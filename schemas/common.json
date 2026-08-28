@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scalar.atelier/story-bible/1.0/common.json",
+  "$defs": {
+    "status": { "enum": ["LOCKED", "OBSERVED", "INFERRED", "OPEN", "CONFLICT", "SEALED"] },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceId", "fileName", "chapter", "paragraph", "paragraphHash", "excerpt"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 }, "fileName": { "type": "string", "minLength": 1 },
+        "chapter": { "type": "string", "minLength": 1 }, "paragraph": { "type": "integer", "minimum": 1 },
+        "paragraphHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "excerpt": { "type": "string" }
+      }
+    }
+  }
+}

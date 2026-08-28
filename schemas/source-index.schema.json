@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://scalar.atelier/story-bible/1.0/source-index.schema.json",
+  "type": "array", "items": {
+    "type": "object", "additionalProperties": false, "required": ["id", "fileName", "sha256", "characterCount", "chapters"],
+    "properties": {
+      "id": { "type": "string" }, "fileName": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "characterCount": { "type": "integer", "minimum": 0 },
+      "chapters": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["id", "title", "paragraphs"], "properties": { "id": { "type": "string" }, "title": { "type": "string" }, "paragraphs": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["index", "hash"], "properties": { "index": { "type": "integer", "minimum": 1 }, "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } } } } } }
+    }
+  }
+}

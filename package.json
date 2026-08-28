@@ -1,0 +1,12 @@
+{
+  "name": "@scalar-atelier/story-bible-format",
+  "version": "1.0.0",
+  "description": "Open, evidence-backed interchange format for fiction world bibles.",
+  "type": "module",
+  "license": "MIT",
+  "bin": { "story-bible": "bin/validate.mjs" },
+  "files": ["bin", "schemas", "examples", "README.md", "SPEC.md"],
+  "scripts": { "test": "node --test && node bin/validate.mjs examples/korean-address-change" },
+  "dependencies": { "ajv": "8.20.0", "jszip": "3.10.1" },
+  "engines": { "node": ">=22" }
+}

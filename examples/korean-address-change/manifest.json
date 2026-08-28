@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectId": "synthetic-korean-address-change",
+  "title": "세 번의 호칭",
+  "generatedAt": "2026-08-28T00:00:00.000Z",
+  "sourceHashes": ["1111111111111111111111111111111111111111111111111111111111111111"],
+  "outputHashes": {
+    "WORLD_BIBLE.md": "a27ccd701e9c7a89b75a0ec3fa23c902c7da01df957ea6038f688bdc37c57b72",
+    "canon.json": "46d4c556d39ff27d12aed27bc9a8a6ce542ff76d54f138ed3b3e5c4fd1be6ced",
+    "relationships.json": "fcf6a510a3a2fb66e156ba71aba07ae0828afa66ad9aabe336b88ac0c0788865",
+    "timeline.json": "db36d5b929fffa8b29e718c0f0a2bba91fdab2ac793a40650ff295c67732eac6",
+    "voice-guide.json": "0baf25026452151c67b6822842d04077daa823750989cff7147fa72b88f7cabb",
+    "source-index.json": "dd77b1dd4fe9598fadb99d64fc701242966f711a7541c05e44c8ceafe4a8f372",
+    "OPEN_QUESTIONS.md": "15186171d3c7b9f5cd84ff75a87f2d7cdb1121b1cdade40d39ed6621e71df41c",
+    "LLM_CONTEXT.md": "f5ac9f1a008d831d9bf41ed7e6d0d701a6093290651455ff9b73cad74c052197"
+  },
+  "contextTarget": 32000
+}

@@ -1,0 +1,5 @@
+[
+  {"id":"rel-1","from":"도희","to":"민준","stage":"경계","change":"업무상 거리를 둔다.","addressFrom":"선생님","addressTo":"도희 씨","status":"OBSERVED","evidence":[{"sourceId":"src-fixture","fileName":"합성예제.md","chapter":"1장 첫 만남","paragraph":1,"paragraphHash":"04f3ec88cf0bb2729ae7828cf8d6a0151542d90cecafda40baa7510082c94a3c","excerpt":"도희는 아직 거리를 둔 채 민준을 선생님이라고 불렀다."}],"order":1},
+  {"id":"rel-2","from":"도희","to":"민준","stage":"협력","change":"먼저 말을 건다.","addressFrom":"민준 씨","addressTo":"도희 씨","status":"OBSERVED","evidence":[{"sourceId":"src-fixture","fileName":"합성예제.md","chapter":"2장 가까워짐","paragraph":1,"paragraphHash":"a6ff6ff7cb4116fc06e0677007c16917b7a5fc1fe1912db498a87a53b8ec8da6","excerpt":"며칠 뒤 도희는 민준 씨, 이쪽을 봐요 하고 먼저 말을 걸었다."}],"order":2},
+  {"id":"rel-3","from":"도희","to":"민준","stage":"신뢰","change":"함께 가자고 청한다.","addressFrom":"민준","addressTo":"도희","status":"OBSERVED","evidence":[{"sourceId":"src-fixture","fileName":"합성예제.md","chapter":"3장 함께","paragraph":1,"paragraphHash":"f583514653d9cc4b62be77e6f73abf6de948442d30635e3faae0cc5f7c3e0db1","excerpt":"마지막 문 앞에서 도희는 민준, 같이 가자고 말했다."}],"order":3}
+]

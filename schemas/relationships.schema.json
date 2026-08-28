@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://scalar.atelier/story-bible/1.0/relationships.schema.json",
+  "type": "array", "items": {
+    "type": "object", "additionalProperties": false,
+    "required": ["id", "from", "to", "stage", "change", "addressFrom", "addressTo", "status", "evidence", "order"],
+    "properties": {
+      "id": { "type": "string" }, "from": { "type": "string" }, "to": { "type": "string" }, "stage": { "type": "string" }, "change": { "type": "string" },
+      "addressFrom": { "type": "string" }, "addressTo": { "type": "string" }, "status": { "$ref": "common.json#/$defs/status" },
+      "evidence": { "type": "array", "items": { "$ref": "common.json#/$defs/evidence" } }, "order": { "type": "integer" }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://scalar.atelier/story-bible/1.0/voice-guide.schema.json",
+  "type": "array", "items": {
+    "type": "object", "additionalProperties": false,
+    "required": ["character", "baseline", "underStress", "addressRules", "status", "evidence"],
+    "properties": {
+      "character": { "type": "string" }, "baseline": { "type": "string" }, "underStress": { "type": "string" },
+      "addressRules": {
+        "type": "array",
+        "items": {
+          "type": "object", "additionalProperties": false, "required": ["target", "stage", "term"],
+          "properties": { "target": { "type": "string" }, "stage": { "type": "string" }, "term": { "type": "string" } }
+        }
+      },
+      "status": { "$ref": "common.json#/$defs/status" }, "evidence": { "type": "array", "items": { "$ref": "common.json#/$defs/evidence" } }
+    }
+  }
+}

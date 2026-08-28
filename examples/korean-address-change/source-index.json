@@ -1,0 +1,7 @@
+[
+  {"id":"src-fixture","fileName":"합성예제.md","sha256":"1111111111111111111111111111111111111111111111111111111111111111","characterCount":94,"chapters":[
+    {"id":"ch-1","title":"1장 첫 만남","paragraphs":[{"index":1,"hash":"04f3ec88cf0bb2729ae7828cf8d6a0151542d90cecafda40baa7510082c94a3c"}]},
+    {"id":"ch-2","title":"2장 가까워짐","paragraphs":[{"index":1,"hash":"a6ff6ff7cb4116fc06e0677007c16917b7a5fc1fe1912db498a87a53b8ec8da6"}]},
+    {"id":"ch-3","title":"3장 함께","paragraphs":[{"index":1,"hash":"f583514653d9cc4b62be77e6f73abf6de948442d30635e3faae0cc5f7c3e0db1"}]}
+  ]}
+]

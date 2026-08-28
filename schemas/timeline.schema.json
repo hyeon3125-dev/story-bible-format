@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://scalar.atelier/story-bible/1.0/timeline.schema.json",
+  "type": "array", "items": {
+    "type": "object", "additionalProperties": false,
+    "required": ["id", "label", "description", "order", "causes", "status", "evidence"],
+    "properties": {
+      "id": { "type": "string" }, "label": { "type": "string" }, "description": { "type": "string" }, "order": { "type": "integer" },
+      "causes": { "type": "array", "items": { "type": "string" } }, "status": { "$ref": "common.json#/$defs/status" },
+      "evidence": { "type": "array", "items": { "$ref": "common.json#/$defs/evidence" } }
+    }
+  }
+}

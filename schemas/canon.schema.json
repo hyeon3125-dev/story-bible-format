@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://scalar.atelier/story-bible/1.0/canon.schema.json",
+  "type": "array", "items": {
+    "type": "object", "additionalProperties": false,
+    "required": ["id", "category", "subject", "statement", "status", "confidence", "evidence", "tags"],
+    "properties": {
+      "id": { "type": "string" }, "category": { "enum": ["identity", "character", "place", "rule", "theme", "decision"] },
+      "subject": { "type": "string" }, "statement": { "type": "string" }, "status": { "$ref": "common.json#/$defs/status" },
+      "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "evidence": { "type": "array", "items": { "$ref": "common.json#/$defs/evidence" } },
+      "tags": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
