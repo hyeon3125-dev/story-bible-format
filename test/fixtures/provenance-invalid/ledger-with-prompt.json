@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectRef": "project-pseudonym-001",
+  "events": [
+    {
+      "eventId": "evt-001",
+      "projectRef": "project-pseudonym-001",
+      "parentReceiptSha256": null,
+      "receiptSha256": "65e5b596c5b786d4673011e02d821b44d6bcd7dac5fb5f4759f5503473f21e8e",
+      "eventKind": "generation_accepted",
+      "artifactSha256": "ca1b3d54123b943b4fa9f33bd4fc5dff3df16bb9f227f182331f316061a8c8ee",
+      "sourceRevisionSha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "requestSha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "executionMode": "managed",
+      "provider": "openai",
+      "models": ["gpt-5.4"],
+      "toolName": "scalar-story-bible",
+      "toolVersion": "1.2.0",
+      "sourceCommit": "1111111111111111111111111111111111111111",
+      "contribution": "ai_generated",
+      "beforeSha256": null,
+      "afterSha256": "ca1b3d54123b943b4fa9f33bd4fc5dff3df16bb9f227f182331f316061a8c8ee",
+      "addedCharacters": 61,
+      "deletedCharacters": 0,
+      "decisionNote": "초안을 수락함",
+      "rightsBasis": "original_ip",
+      "createdAt": "2026-08-29T00:00:00.000Z",
+      "acceptedAt": "2026-08-29T00:05:00.000Z",
+      "userConfirmed": true,
+      "anchorStatus": "unanchored",
+      "prompt": "원문 프롬프트는 저장하면 안 됨"
+    }
+  ]
+}

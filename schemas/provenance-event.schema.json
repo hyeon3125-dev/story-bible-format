@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scalar.atelier/story-bible/1.2/provenance-event.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId", "projectRef", "parentReceiptSha256", "receiptSha256", "eventKind",
+    "artifactSha256", "sourceRevisionSha256", "requestSha256", "executionMode",
+    "provider", "models", "toolName", "toolVersion", "sourceCommit", "contribution",
+    "beforeSha256", "afterSha256", "addedCharacters", "deletedCharacters", "decisionNote",
+    "rightsBasis", "createdAt", "acceptedAt", "userConfirmed", "anchorStatus"
+  ],
+  "properties": {
+    "eventId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "projectRef": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "parentReceiptSha256": { "oneOf": [{ "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" }, { "type": "null" }] },
+    "receiptSha256": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" },
+    "eventKind": { "enum": ["generation_accepted", "human_revision", "manual_import", "rights_reconfirmed"] },
+    "artifactSha256": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" },
+    "sourceRevisionSha256": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" },
+    "requestSha256": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" },
+    "executionMode": { "enum": ["managed", "byok", "imported"] },
+    "provider": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "models": {
+      "type": "array", "maxItems": 16, "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "toolName": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "toolVersion": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "sourceCommit": {
+      "oneOf": [
+        { "type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$" },
+        { "type": "null" }
+      ]
+    },
+    "contribution": { "enum": ["ai_generated", "human_edited", "manual"] },
+    "beforeSha256": { "oneOf": [{ "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" }, { "type": "null" }] },
+    "afterSha256": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/sha256" },
+    "addedCharacters": { "type": "integer", "minimum": 0 },
+    "deletedCharacters": { "type": "integer", "minimum": 0 },
+    "decisionNote": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "rightsBasis": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/rightsBasis" },
+    "createdAt": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/timestamp" },
+    "acceptedAt": { "$ref": "https://scalar.atelier/story-bible/1.0/common.json#/$defs/timestamp" },
+    "userConfirmed": { "const": true },
+    "anchorStatus": { "enum": ["anchored", "unanchored"] }
+  }
+}
