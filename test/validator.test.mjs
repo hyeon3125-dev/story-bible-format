@@ -428,3 +428,34 @@ test("1.2 provenance remains optional", async () => {
   const result = validate(dir);
   assert.equal(result.status, 0, result.stderr);
 });
+
+test("1.3 objectives are additive, exact, and cannot overlap priorities", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "story-bible-objectives-"));
+  await cp("examples/korean-continuation-handoff", dir, { recursive: true });
+  const objectives = {
+    schema: "scalar.story-objectives.v1",
+    readerPromise: "인물의 선택이 성공의 의미를 뒤집는 비극",
+    primary: "character_attachment",
+    secondary: ["emotional_impact", "next_episode_pull"],
+    payoffCadence: "arc",
+    confirmedAt: "2026-08-30T00:00:00.000Z"
+  };
+  await writeFile(join(dir, "objectives.json"), `${JSON.stringify(objectives, null, 2)}\n`);
+  await rewriteJson(dir, "manifest.json", (manifest) => {
+    manifest.schemaVersion = "1.3.0";
+    manifest.outputHashes["objectives.json"] = createHash("sha256").update(JSON.stringify(objectives, null, 2) + "\n").digest("hex");
+  });
+  let result = validate(dir);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /valid story-bible 1\.3\.0/u);
+
+  await rewriteJson(dir, "objectives.json", (value) => { value.secondary[0] = value.primary; });
+  result = validate(dir);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /primary and secondary must differ/u);
+
+  await rewriteJson(dir, "manifest.json", (manifest) => { manifest.schemaVersion = "1.2.0"; });
+  result = validate(dir);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /requires schemaVersion 1\.3\.0/u);
+});

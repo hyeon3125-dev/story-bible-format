@@ -1,6 +1,6 @@
 {
   "name": "@scalar-atelier/story-bible-format",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Open, evidence-backed interchange format for fiction world bibles.",
   "type": "module",
   "license": "MIT",

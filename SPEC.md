@@ -1,4 +1,4 @@
-# Story Bible Format 1.2.0
+# Story Bible Format 1.3.0
 
 A package contains the following required artifacts at its root:
 
@@ -23,9 +23,9 @@ Status semantics:
 
 Consumers must preserve `LOCKED` values, must not present `INFERRED`/`OPEN`/`CONFLICT` as canon, and should enforce reveal timing for `SEALED`. All `OBSERVED` records must carry at least one evidence reference resolvable in `source-index.json`.
 
-## Optional continuation handoff (1.1 and 1.2)
+## Optional continuation handoff (1.1 through 1.3)
 
-Version 1.1 and 1.2 packages may add:
+Versions 1.1 through 1.3 may add:
 
 - `story-project.json`: the minimal `scalar.story-project.v2` cursor used to continue an accepted story.
 - `manuscript/<language>/*.md`: user-accepted generated episodes only. Imported source prose is not duplicated by default.
@@ -51,9 +51,9 @@ Prose begins here.
 
 Relationship stages may include `validFromEventId` and `validToEventId`. Consumers choose the stage valid at the current timeline event and must not leak a later address term into an earlier scene.
 
-## Optional local provenance (1.2)
+## Optional local provenance (1.2 and 1.3)
 
-Version 1.2 packages may add these exact paths:
+Versions 1.2 and 1.3 may add these exact paths:
 
 - `provenance/ledger.json`: ordered acceptance/edit events validated by `provenance-ledger.schema.json` and `provenance-event.schema.json`.
 - `provenance/anchor-ack.json`: one or more server acknowledgements validated by `anchor-ack.schema.json`; omit the file when none exist.
@@ -61,7 +61,7 @@ Version 1.2 packages may add these exact paths:
 - `provenance/release-receipt.sig`: optional detached Ed25519 SSH signature bytes.
 - `provenance/release-seal.ots`: optional OpenTimestamps proof bytes, allowed only with the signature and receipt.
 
-If any provenance path is present, `provenance/ledger.json` is required. Unknown paths under `provenance/` are invalid. Every package file other than `manifest.json` must appear exactly once as a key in `manifest.outputHashes`, and every key must name a package file. This exact-inventory rule applies only to 1.2; 1.0 and 1.1 retain their prior validation behavior.
+If any provenance path is present, `provenance/ledger.json` is required. Unknown paths under `provenance/` are invalid. Every package file other than `manifest.json` must appear exactly once as a key in `manifest.outputHashes`, and every key must name a package file. This exact-inventory rule applies to 1.2 and 1.3; 1.0 and 1.1 retain their prior validation behavior.
 
 ### Event receipts and chain
 
@@ -84,3 +84,9 @@ The format validator checks acknowledgement shape, timestamps, ledger references
 The release receipt binds a pseudonymous project/release ID, clean source commit, rights basis, ledger-head receipt, creation time, and one or more `{path, sha256, bytes}` entries. Every listed path must be a safe, present, non-provenance package file whose bytes and SHA-256 match. The receipt file is recursively key-sorted compact JSON followed by one LF byte. Its creation time cannot precede the ledger head's acceptance time.
 
 The validator treats `.sig` and `.ots` as opaque, non-empty artifacts and binds their exact bytes through `manifest.outputHashes`. Signature verification still requires the selected Ed25519 SSH public key, and an upgraded OpenTimestamps proof still requires a Bitcoin-chain verification method. Neither a timestamp nor this package establishes authorship, ownership, or permission to use third-party material.
+
+## Optional creative objectives (1.3)
+
+Version 1.3 adds `objectives.json`. It records a user-confirmed reader promise, one primary commercial objective, up to two secondary objectives, and a scene/episode/arc payoff cadence. Objective IDs are limited to next-episode pull, character attachment, emotional impact, memorable moments, payoff delivery, and pacing.
+
+Objectives guide generation and report-only review. They are not canon, do not override `LOCKED` or `SEALED`, and must never turn a quality judgment into a package-validity or continuity verdict. A package containing `objectives.json` must use schema version 1.3.0 and hash the file; a 1.3 package must contain it. Versions 1.0 through 1.2 remain unchanged.

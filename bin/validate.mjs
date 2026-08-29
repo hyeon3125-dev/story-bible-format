@@ -11,6 +11,7 @@ const required = ["WORLD_BIBLE.md", "canon.json", "relationships.json", "timelin
 const schemaFor = { "canon.json": "canon.schema.json", "relationships.json": "relationships.schema.json", "timeline.json": "timeline.schema.json", "voice-guide.json": "voice-guide.schema.json", "source-index.json": "source-index.schema.json", "manifest.json": "manifest.schema.json" };
 const provenanceSchemaFor = { "provenance/ledger.json": "provenance-ledger.schema.json", "provenance/release-receipt.json": "release-receipt.schema.json", "provenance/anchor-ack.json": "anchor-ack.schema.json" };
 const provenanceFiles = new Set([...Object.keys(provenanceSchemaFor), "provenance/release-receipt.sig", "provenance/release-seal.ots"]);
+const objectivesFile = "objectives.json";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const MAX_FILES = 1_100;
 const MAX_FILE_BYTES = 20_000_000;
@@ -156,6 +157,16 @@ async function main() {
   }
 
   const version = parsed["manifest.json"].schemaVersion;
+  const objectivesData = files.get(objectivesFile);
+  if (version === "1.3.0") {
+    if (!objectivesData) throw new Error("Story Bible 1.3 requires objectives.json");
+    const schema = JSON.parse(await readFile(resolve(root, "schemas/objectives.schema.json"), "utf8"));
+    const validate = ajv.compile(schema);
+    parsed[objectivesFile] = JSON.parse(text(objectivesData, objectivesFile));
+    if (!validate(parsed[objectivesFile])) throw new Error(`${objectivesFile}: ${ajv.errorsText(validate.errors)}`);
+    if (parsed[objectivesFile].secondary.includes(parsed[objectivesFile].primary)) throw new Error("objectives primary and secondary must differ");
+    timestamp(parsed[objectivesFile].confirmedAt, "objectives confirmedAt");
+  } else if (objectivesData) throw new Error("objectives.json requires schemaVersion 1.3.0");
   const sourceHashes = parsed["manifest.json"].sourceHashes;
   const indexedSources = parsed["source-index.json"];
   const indexedSourceIds = new Set(indexedSources.map((source) => source.id));
@@ -166,7 +177,7 @@ async function main() {
   let storyProject = null;
   const manuscriptNames = [...files.keys()].filter((name) => name.startsWith("manuscript/"));
   if (version === "1.0.0" && (projectFile || manuscriptNames.length)) throw new Error("1.1 handoff files require schemaVersion 1.1.0");
-  if (version === "1.1.0" || version === "1.2.0") {
+  if (version === "1.1.0" || version === "1.2.0" || version === "1.3.0") {
     if (!projectFile && manuscriptNames.length) throw new Error("manuscript requires story-project.json");
     if (projectFile) {
       const schema = JSON.parse(await readFile(resolve(root, "schemas/story-project.schema.json"), "utf8"));
@@ -206,8 +217,8 @@ async function main() {
   }
 
   const presentProvenance = [...files.keys()].filter((name) => name.startsWith("provenance/"));
-  if (version !== "1.2.0" && presentProvenance.length) throw new Error("provenance files require schemaVersion 1.2.0");
-  if (version === "1.2.0") {
+  if (version !== "1.2.0" && version !== "1.3.0" && presentProvenance.length) throw new Error("provenance files require schemaVersion 1.2.0 or newer");
+  if (version === "1.2.0" || version === "1.3.0") {
     for (const name of presentProvenance) if (!provenanceFiles.has(name)) throw new Error(`unknown provenance file: ${name}`);
     const ledgerFile = files.get("provenance/ledger.json");
     if (presentProvenance.length && !ledgerFile) throw new Error("provenance files require provenance/ledger.json");
@@ -313,7 +324,8 @@ async function main() {
   }
   for (const name of required) if (name !== "manifest.json" && !parsed["manifest.json"].outputHashes[name]) throw new Error(`unhashed core file: ${name}`);
   for (const name of ["story-project.json", ...manuscriptNames]) if (files.has(name) && !parsed["manifest.json"].outputHashes[name]) throw new Error(`unhashed handoff file: ${name}`);
-  if (version === "1.2.0") {
+  if (objectivesData && !parsed["manifest.json"].outputHashes[objectivesFile]) throw new Error("unhashed objectives.json");
+  if (version === "1.2.0" || version === "1.3.0") {
     const actual = [...files.keys()].filter((name) => name !== "manifest.json").sort();
     const declared = Object.keys(parsed["manifest.json"].outputHashes).sort();
     if (JSON.stringify(actual) !== JSON.stringify(declared)) throw new Error("manifest output hashes do not exactly match package files");
