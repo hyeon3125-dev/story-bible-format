@@ -1,0 +1,20 @@
+{
+  "schema": "scalar.story-project.v2",
+  "title": "멈춘 비 뒤에서",
+  "canonicalLanguage": "ko",
+  "status": "drafting",
+  "currentEpisodeId": "episode-001",
+  "nextSceneId": "S-002",
+  "acceptedEpisodes": [
+    {
+      "id": "episode-001",
+      "title": "제1화. 멈출지, 맞설지",
+      "file": "manuscript/ko/episode-001.md",
+      "sceneId": "S-001",
+      "acceptedAt": "2026-08-29T00:00:00.000Z",
+      "characterCount": 61,
+      "sourceRevisionHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "contentHash": "aca08e033d6921320dbf8c43da8665a68d3430023597f209fc258057a051953e"
+    }
+  ]
+}

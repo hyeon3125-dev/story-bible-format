@@ -6,7 +6,8 @@
     "properties": {
       "id": { "type": "string" }, "from": { "type": "string" }, "to": { "type": "string" }, "stage": { "type": "string" }, "change": { "type": "string" },
       "addressFrom": { "type": "string" }, "addressTo": { "type": "string" }, "status": { "$ref": "common.json#/$defs/status" },
-      "evidence": { "type": "array", "items": { "$ref": "common.json#/$defs/evidence" } }, "order": { "type": "integer" }
+      "evidence": { "type": "array", "items": { "$ref": "common.json#/$defs/evidence" } }, "order": { "type": "integer" },
+      "validFromEventId": { "type": "string", "minLength": 1 }, "validToEventId": { "type": "string", "minLength": 1 }
     }
   }
 }

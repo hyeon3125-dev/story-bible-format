@@ -1,0 +1,41 @@
+{
+  "schema": "scalar.longform-evidence.v1",
+  "verifiedAt": "2026-08-29",
+  "totals": {
+    "completedWorks": 2,
+    "characters": 700545,
+    "scenes": 1188
+  },
+  "works": [
+    {
+      "source": "public",
+      "repository": "https://github.com/hyeon3125-dev/snz-novel",
+      "commit": "33c77a3b9faf9489a33335adcff964e23da0374b",
+      "characters": 301841,
+      "scenes": 1033,
+      "narrativeLines": 9091,
+      "checks": {
+        "deterministicRebuild": "pass",
+        "sourceIntegrity": "pass",
+        "graphOrphans": 0,
+        "graphCycles": 0,
+        "sealSurfaces": 18,
+        "violations": 0
+      },
+      "canonicalPayloadSha256": "4cac9c6b3c708501d2a60ea16795384eeeed6077b3dce40e001be474c31c9dfa"
+    },
+    {
+      "source": "private-anonymized",
+      "commit": "229a7c37d5f6804c93e6bea0b27ddbd075a26df3",
+      "characters": 398704,
+      "files": 48,
+      "scenes": 155,
+      "checks": {
+        "manuscriptLint": "pass",
+        "violations": 0
+      },
+      "canonicalPayloadSha256": "4bb54012c531fa3ce69692e14a6c895706f86aa8f5d66ceb77e2c5dbf21027a0",
+      "note": "The protected manuscript and repository name are intentionally not published. This receipt is an operator attestation, not independently reproducible public evidence."
+    }
+  ]
+}

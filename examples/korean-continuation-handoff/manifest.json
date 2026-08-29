@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.1.0",
+  "projectId": "synthetic-korean-continuation-handoff",
+  "title": "멈춘 비 뒤에서",
+  "generatedAt": "2026-08-29T00:00:00.000Z",
+  "sourceHashes": ["2222222222222222222222222222222222222222222222222222222222222222"],
+  "outputHashes": {
+    "WORLD_BIBLE.md": "66402903c2d4f7ebdfec5e4bc517905a975e1702265953a1da1e9f6d6c19aedc",
+    "canon.json": "9de23a8c60c7f0d4d20798826e936ae05f332b6e5d6c46e8d55ea2934d8ba620",
+    "relationships.json": "b306c10faa8561603cd7c5eecd55faf25d7dfe61a85d60be1c5871472f068d55",
+    "timeline.json": "bf30e32fccc87f285cd0ed1a29488b0c504cc73afda6db9fbf6618c953325092",
+    "voice-guide.json": "17ec43991ad1619049de0f267e18fd715a4bb27debf86e53beb66a5781a6ec20",
+    "source-index.json": "cdfb3b44a74a8d1f2740f375b2243c8b2fdbebf0b9ff1e14f55e9d0859dade51",
+    "OPEN_QUESTIONS.md": "f1725b20cc28af14926b7370e2e335df2e6be336e83d38dced493a6893f697a9",
+    "LLM_CONTEXT.md": "984d6e2ca06229105eee357ea7830c166ad647415bbb3b58192ca715e872dfea",
+    "story-project.json": "2a2edcd245442da2985780a6d61cb3d39e15a20cdd4a2e54f019125386c705e1",
+    "manuscript/ko/episode-001.md": "ca1b3d54123b943b4fa9f33bd4fc5dff3df16bb9f227f182331f316061a8c8ee"
+  },
+  "contextTarget": 32000
+}

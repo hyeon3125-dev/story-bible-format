@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scalar.atelier/story-bible/1.1/story-project.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "title", "canonicalLanguage", "status", "nextSceneId", "acceptedEpisodes"],
+  "properties": {
+    "schema": { "const": "scalar.story-project.v2" },
+    "title": { "type": "string", "minLength": 1 },
+    "canonicalLanguage": { "enum": ["ko", "en", "ja"] },
+    "status": { "enum": ["planning", "drafting", "complete"] },
+    "currentEpisodeId": { "type": "string", "minLength": 1 },
+    "nextSceneId": { "type": "string", "pattern": "^S-[0-9]{3,}$" },
+    "acceptedEpisodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "file", "sceneId", "acceptedAt", "characterCount", "sourceRevisionHash", "contentHash"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "file": { "type": "string", "pattern": "^manuscript/(ko|en|ja)/[^/]+\\.md$" },
+          "sceneId": { "type": "string", "pattern": "^S-[0-9]{3,}$" },
+          "acceptedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$" },
+          "characterCount": { "type": "integer", "minimum": 1 },
+          "sourceRevisionHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "contentHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    }
+  }
+}
