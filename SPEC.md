@@ -51,6 +51,8 @@ Prose begins here.
 
 Relationship stages may include `validFromEventId` and `validToEventId`. Consumers choose the stage valid at the current timeline event and must not leak a later address term into an earlier scene.
 
+A directional relationship stage may also include `registerTier`, an integer from 0 through 3: `0` intimate/blunt, `1` casual/familiar, `2` polite/neutral, and `3` formal/distant. It is the single narrative register for that speaker toward that target at that stage; each language realizes it with its own grammar. Reverse directions may differ. The field remains optional for backward compatibility, and consumers must not infer or store separate per-language tiers when it is present.
+
 ## Optional local provenance (1.2 and 1.3)
 
 Versions 1.2 and 1.3 may add these exact paths:

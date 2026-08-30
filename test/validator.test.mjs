@@ -56,6 +56,15 @@ test("synthetic address-change package validates", () => {
   assert.match(result.stdout, /valid story-bible 1\.0\.0/u);
 });
 
+test("relationship registerTier is limited to 0 through 3", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "story-bible-register-"));
+  await cp("examples/korean-address-change", dir, { recursive: true });
+  await rewriteJson(dir, "relationships.json", (relationships) => { relationships[0].registerTier = 4; });
+  const result = validate(dir);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /registerTier must be <= 3/u);
+});
+
 test("tampered outputs fail integrity validation", async () => {
   const dir = await mkdtemp(join(tmpdir(), "story-bible-"));
   await cp("examples/korean-address-change", dir, { recursive: true });
